@@ -18,12 +18,12 @@ public class AccountDtoConverter {
         this.transactionDtoConverter = transactionDtoConverter;
     }
 
-    public AccountDto convert(Account account) {
-        return new AccountDto(account.getId(),
-                account.getBalance(),
-                account.getCreationDate(),
-                customerDtoConverter.convertToAccountCustomer(account.getCustomer()),
-                Objects.requireNonNull(account.getTransactions())
+    public AccountDto convert(Account from) {
+        return new AccountDto(from.getId(),
+                from.getBalance(),
+                from.getCreationDate(),
+                customerDtoConverter.convertToAccountCustomer(from.getCustomer()),
+                Objects.requireNonNull(from.getTransactions())
                         .stream()
                         .map(transactionDtoConverter::convert)
                         .collect(Collectors.toSet())
