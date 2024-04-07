@@ -1,5 +1,6 @@
 package org.hncdev.accountmanagement.controller;
 
+import jakarta.validation.Valid;
 import org.hncdev.accountmanagement.dto.AccountDto;
 import org.hncdev.accountmanagement.dto.CreateAccountRequest;
 import org.hncdev.accountmanagement.service.AccountService;
@@ -20,7 +21,8 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AccountDto> createAccount(@RequestBody CreateAccountRequest createAccountRequest) {
+    public ResponseEntity<AccountDto> createAccount(@Valid @RequestBody
+                                                        CreateAccountRequest createAccountRequest) {
         return ResponseEntity.ok(accountService.createAccount(createAccountRequest));
     }
 }
